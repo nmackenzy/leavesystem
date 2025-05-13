@@ -1,0 +1,62 @@
+@page
+@model EmployeeDashboardModel
+@{
+    ViewData["Title"] = "Employee Dashboard";
+}
+
+<h2>Welcome, @Model.Employee?.Name</h2>
+
+<form method="post" asp-page-handler="Logout" style="display:inline;">
+    @Html.AntiForgeryToken()
+    <button type="submit" class="btn btn-danger">Logout</button>
+</form>
+
+<h3>Submit Leave Request</h3>
+
+<form method="post">
+    @Html.AntiForgeryToken()
+    <div>
+        <label>Start Date:</label>
+        <input type="date" asp-for="NewRequest.StartDate" required />
+    </div>
+    <div>
+        <label>End Date:</label>
+        <input type="date" asp-for="NewRequest.EndDate" required />
+    </div>
+    <div>
+        <label>Reason:</label>
+        <textarea asp-for="NewRequest.Reason" required></textarea>
+    </div>
+    <button type="submit">Submit</button>
+
+    <div asp-validation-summary="All"></div>
+</form>
+
+<h3>Your Leave Requests</h3>
+<table>
+    <thead>
+        <tr>
+            <th>Start</th>
+            <th>End</th>
+            <th>Reason</th>
+            <th>Status</th>
+            <th>Manager Comments</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var request in Model.MyRequests)
+        {
+            <tr>
+                <td>@request.StartDate.ToShortDateString()</td>
+                <td>@request.EndDate.ToShortDateString()</td>
+                <td>@request.Reason</td>
+                <td>@request.Status</td>
+                <td>@request.ManagerComments</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

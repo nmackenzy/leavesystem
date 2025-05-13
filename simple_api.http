@@ -1,0 +1,82 @@
+@simple_api_HostAddress = http://localhost:5009
+
+GET {{simple_api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
+
+
+GET {{simple_api_HostAddress}}/leaverequest
+Accept: application/json
+
+###
+POST {{simple_api_HostAddress}}/leaverequest/
+Content-Type: application/json
+
+{
+    "UserId": 2,
+    "StartDate": "2025-06-01",
+    "EndDate": "2025-11-01",
+    "Reason": "Maternity"
+}
+
+###
+PUT {{simple_api_HostAddress}}/leaverequest/2
+Content-Type: application/json
+
+{
+    "RequestId": 2,
+    "UserId": 2,
+    "StartDate": "2025-06-01",
+    "EndDate": "2025-11-01",
+    "Reason": "Maternity",
+    "Status": "Approved",
+    "ManagerComments": "Lorem Ipsum"
+}
+
+###
+DELETE {{simple_api_HostAddress}}/leaverequest/2
+
+###
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+GET {{simple_api_HostAddress}}/user
+Accept: application/json
+
+###
+POST {{simple_api_HostAddress}}/user/
+Content-Type: application/json
+
+{
+    "Name": "Lorem Ipsum",
+    "Role": "Employee"
+}
+
+###
+POST {{simple_api_HostAddress}}/user/
+Content-Type: application/json
+
+{
+    "Name": "Dolor Sit",
+    "Role": "Manager"
+}
+
+###
+DELETE {{simple_api_HostAddress}}/user/1
+
+###

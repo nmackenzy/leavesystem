@@ -1,0 +1,20 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Login";
+}
+
+<h2>Login</h2>
+
+<form method="post">
+    @Html.AntiForgeryToken()
+    <div>
+        <label>User ID:</label>
+        <input type="number" name="UserId" required />
+    </div>
+    <button type="submit">Login</button>
+    @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+    {
+        <p style="color:red">@Model.ErrorMessage</p>
+    }
+</form>
